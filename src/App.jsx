@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiPlay, FiX, FiShare, FiTwitter, FiGithub, FiCheck } from 'react-icons/fi';
 import { FaApple, FaWindows, FaUbuntu } from 'react-icons/fa';
 import icon from '../public/icon.png'
+import { toast } from 'react-hot-toast';
 
 // Animated Grid Background Component
 const AnimatedGrid = () => {
@@ -119,6 +120,22 @@ function App() {
     setTimeout(() => setCopied(false), 2500)
   }
 
+  const handleDownload = (platform) => {
+    switch (platform) {
+      case 'windows':
+        window.open('https://github.com/AasheeshLikePanner/clipboard/releases/download/v1.0.0/notch-clipboard-setup-0.0.0-x64.msi', '_blank');
+        break;
+      case 'linux':
+        window.open('https://github.com/AasheeshLikePanner/clipboard/releases/download/v1.0.0/NotchClipboard-linux-x64.AppImage', '_blank');
+        break;
+      case 'mac':
+        toast.error('The macOS version will be available soon.');
+        break;
+      default:
+        break;
+    }
+  };
+
   const socialCards = [
     {
       id: 'share',
@@ -130,13 +147,13 @@ function App() {
       id: 'twitter',
       icon: <FiTwitter className="text-xl" />,
       text: 'Twitter',
-      action: () => window.open('https://twitter.com/your_username', '_blank'),
+      action: () => window.open('https://x.com/aasheeshLike', '_blank'),
     },
     {
       id: 'github',
       icon: <FiGithub className="text-xl" />,
       text: 'GitHub',
-      action: () => window.open('https://github.com/your_username', '_blank'),
+      action: () => window.open('https://github.com/AasheeshLikePanner', '_blank'),
     },
   ]
 
@@ -224,6 +241,7 @@ function App() {
               whileHover={{ y: -2, scale: 1.05 }}
               onHoverStart={() => setHoveredPlatform(platform.id)}
               onHoverEnd={() => setHoveredPlatform(null)}
+              onClick={() => handleDownload(platform.id)}
               className={`flex flex-col items-center px-4 py-3 rounded-xl transition-all duration-200 shadow-sm cursor-pointer ${
                 hoveredPlatform === platform.id
                   ? 'bg-[#18181b] text-white scale-105'
