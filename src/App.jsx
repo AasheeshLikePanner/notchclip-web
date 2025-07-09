@@ -93,6 +93,7 @@ function App() {
   const [showVideo, setShowVideo] = useState(false)
   const [showNotch, setShowNotch] = useState(false)
   const [copied, setCopied] = useState(false)
+  const videoRef = useRef(null);
 
   // Listen for Ctrl+Shift+V to show the notch clipboard
   useEffect(() => {
@@ -268,14 +269,33 @@ function App() {
           className="w-full"
         >
           <div
-            className="aspect-video bg-[#f5f5f5] rounded-xl overflow-hidden cursor-pointer border border-[#ececec] flex items-center justify-center transition-shadow hover:shadow-lg"
+            className="aspect-video bg-black rounded-xl overflow-hidden cursor-pointer border border-[#ececec] flex items-center justify-center transition-shadow hover:shadow-lg relative"
             onClick={() => setShowVideo(true)}
+            onMouseEnter={() => {
+              if (videoRef.current) {
+                videoRef.current.play();
+              }
+            }}
+            onMouseLeave={() => {
+              if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+              }
+            }}
           >
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center mb-2">
+            <video
+              ref={videoRef}
+              src={demo}
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover absolute inset-0"
+            />
+            <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center transition-opacity opacity-100 hover:opacity-0">
+              <div className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center mb-2">
                 <FiPlay className="text-[#18181b] text-[20px]" />
               </div>
-              <p className="text-[#6e6e73] text-[14px] tracking-wide">Watch demo</p>
+              <p className="text-white text-[14px] tracking-wide font-medium">Watch demo</p>
             </div>
           </div>
         </motion.div>
