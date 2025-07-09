@@ -4,6 +4,7 @@ import { FiPlay, FiX, FiShare, FiTwitter, FiGithub, FiCheck } from 'react-icons/
 import { FaApple, FaWindows, FaUbuntu } from 'react-icons/fa';
 import icon from '../public/icon.png'
 import { toast } from 'react-hot-toast';
+import demo from './assets/demo.mp4'
 
 // Animated Grid Background Component
 const AnimatedGrid = () => {
@@ -304,7 +305,7 @@ function App() {
                 <FiX className="text-[#1a1a1a] text-[18px]" />
               </button>
               <div className="aspect-video bg-[#f5f5f5] flex items-center justify-center">
-                <p className="text-[#6e6e73] text-[15px] tracking-wide">Product demo video</p>
+                <video src={demo} autoPlay autoFocus></video>
               </div>
             </motion.div>
           </motion.div>
