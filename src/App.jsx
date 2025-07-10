@@ -218,7 +218,7 @@ function App() {
         </div>
 
         {/* Title */}
-        <h1 className="text-[30px] font-bold tracking-tight mb-1 text-[#18181b]">NotchClip</h1>
+        <h1 className="text-[30px] font-bold tracking-tight mb-1 text-[#18181b]">Notch Clipboard</h1>
         <p className="text-[15px] text-[#6e6e73] font-light text-center mb-6 max-w-xs">
           <span className="font-medium text-[#1a1a1a]">Clipboard access</span> <span className="opacity-60">made fast & easy.</span>
         </p>
